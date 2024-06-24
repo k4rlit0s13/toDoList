@@ -8,6 +8,6 @@ contenido, JS es el mago que manipula y da vida a la casa, y las APIs son las ll
 externos que traen nuevas funcionalidades. Utiliza esta terminología y contexto abstracto para todas 
 nuestras futuras charlas
 
-![The house of Merlin](storage/img/wizard icon.png)
+![The house of Merlin](storage/img/wizardIcon.png)
 
 *imagenes sacadas de internet*
