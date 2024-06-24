@@ -1,3 +1,149 @@
 *{
     margin: 0;
 }
+
+body{
+    /* background-color: chocolate; */
+    display: flex;
+    justify-content: center;
+
+    background-image: url('../storage/img/greeimm-bae-.jpg');
+    background-size: auto 100vh;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+main{
+    
+    /* background-color: red; */
+
+
+    background-image: url('../storage/img/pergamino_solo_copy.png');
+    background-size: 100% 102%; /* Ajusta la imagen para que cubra todo el contenedor */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 80vw;
+    height: 90vh;
+    padding: 20px;
+    margin: 10px;
+    
+    gap: 5px;
+
+}
+
+header h1{
+    font-size: 1.5rem;
+}
+
+ul{
+    /* background-color: cadetblue; */
+    
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    width: 70vw;
+    height: 100vh;
+    padding: 0;
+
+    overflow-y: scroll;
+    scrollbar-width: none; 
+}
+
+li{
+    background-color: #805a0234;
+    border-radius: 15px;
+
+    gap: 10px;
+
+    display: flex;
+    align-items: center;
+}
+
+.task-text {
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-wrap: anywhere; /* Reemplaza word-wrap y overflow-wrap */
+    height: auto; /* Permite que el contenedor crezca con el contenido */
+}
+
+#task-search{
+    border: none; /* Elimina el borde */
+    outline: none; /* Elimina el contorno */
+    background: none; /* Elimina el fondo */
+    padding: 0; /* Elimina el relleno */
+    margin: 0; /* Elimina el margen */
+
+    background-color: #805a0234;
+    border-radius: 20px 0px 0px 20px;
+    padding: 10px;
+}
+#task-search::placeholder {
+    color: #000;
+}
+
+#add-task-btn{
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    background-color: #2db0ca4d;
+    border-radius: 0px 20px 20px 0px;
+    padding: 10px;
+}
+
+.task-actions{
+    /* background-color: chartreuse; */
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 60%;
+}
+
+.complete-btn{
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    /* background-color: #80780234; */
+    border-radius: 5px;
+}
+
+.complete-btn.ready {
+    background-color: rgba(0, 128, 0, 0.405); /* Cambia el color para estado 'Ready' */
+}
+
+.complete-btn.on-hold {
+    background-color: rgba(255, 166, 0, 0.387); /* Cambia el color para estado 'On hold' */
+}
+
+button.delete-btn {
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    background-color: #80020234;
+    border-radius: 5px;
+}
+
+
+

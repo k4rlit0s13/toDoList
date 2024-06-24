@@ -2,12 +2,13 @@
 import { getAllData, getFilteredData } from "./algoritms/formules.js"; // Importa hechizos para obtener todos los datos y filtrar datos
 import { listAlldata } from "./components/list.js";// Importa hechizo para listar todos los datos
 import { addNewData } from "./algoritms/formules.js";// Importa hechizo para agregar nuevos datos
+import { updateDateTime } from "./algoritms/formules.js";
 
 export const taskList = document.querySelector('#task-list');// Encuentra el pergamino mágico que contiene la lista de tareas
 export const taskSearchInput = document.querySelector('#task-search');// Encuentra el orbe mágico para buscar tareas
 const addTaskBtn = document.querySelector('#add-task-btn');// Encuentra el botón para agregar nuevas tareas
 const responsepage=document.querySelector('#response')// Encuentra la página de respuesta para comunicarse con los hechiceros
-
+export const currentdatetime= document.querySelector('current-date-time')
 
 //Este evento, conocido como DOMContentLoaded, se dispara cuando el pergamino mágico (documento HTML) ha sido completamente leído y 
 // parseado por los hechiceros del navegador, pero antes de que todos los encantamientos adicionales (como imágenes y scripts externos) 
@@ -15,6 +16,8 @@ const responsepage=document.querySelector('#response')// Encuentra la página de
 // pacientemente, como un aprendiz de mago, a que todos los elementos esenciales estén listos antes de continuar con sus propios hechizos.
 document.addEventListener('DOMContentLoaded', async () => { 
     
+    updateDateTime();
+
     await new Promise(resolve => setTimeout(resolve, 1000));// Invoca el hechizo de retraso por un segundo para preparar la escena
     responsepage.style.display = 'none';// Desaparece la página de respuesta para revelar la magia entrante
 

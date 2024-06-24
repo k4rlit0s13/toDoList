@@ -1,6 +1,7 @@
 // Importa la variable taskList desde main.js para acceder a la lista de tareas
 import { taskList } from "../main.js";// Importa la variable mágica 'taskList' desde main.js para manipular la lista de tareas
 import { listAlldata } from "../components/list.js";// Importa el hechizo 'listAlldata' desde list.js para renderizar los datos en la lista
+import { currentdatetime } from "../main.js";
 
 // Encantamiento para obtener todos los datos de las tareas desde la API
 export const getAllData = async () => {// Crea un hechizo asincrónico llamado 'getAllData' para obtener todos los datos de las tareas
@@ -82,5 +83,17 @@ export const deleteData = async (data, taskId) => {// Crea una función asincró
         console.error(`Error al eliminar el dato con ID ${taskId}: ${error.message}`);// Lanza un hechizo de consola para mostrar el error
     }
 };
+
+// Función para obtener la fecha y hora actuales
+export const updateDateTime = () => {
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString();
+    const formattedTime = now.toLocaleTimeString();
+    document.getElementById('current-date-time').textContent = `${formattedDate} ${formattedTime}`;
+};
+document.addEventListener('DOMContentLoaded', (event) => {
+    updateDateTime(); 
+    setInterval(updateDateTime, 1000); 
+});
 
 

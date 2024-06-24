@@ -1,53 +1,83 @@
-// Importa la variable taskList desde main.js para acceder a la lista de tareas
-import { taskList } from "../main.js";// Invoca el hechizo para obtener la lista de tareas desde main.js (import { taskList })
-import { deleteData } from "../algoritms/formules.js";// Invoca el hechizo para eliminar datos desde formules.js (import { deleteData })
-import { updateTaskStatus } from "../algoritms/formules.js";// Invoca el hechizo para actualizar el estado de la tarea desde formules.js (import { updateTaskStatus })
+import { taskList } from "../main.js";
+import { deleteData, updateTaskStatus } from "../algoritms/formules.js";
 
 export const listAlldata = (data) => {
     if (!Array.isArray(data)) {
-        data = [data]; // Convierte a array si no lo es para garantizar consistencia (data = [data])
+        data = [data]; // Convierte a array si no lo es para garantizar consistencia
     }
-    taskList.innerHTML = '';// Prepara el pergamino para recibir nuevos elementos (taskList.innerHTML = '')
+    
+    taskList.innerHTML = ''; // Limpia el contenido actual de taskList
+
+    // Separar datos por status
+    const onHoldTasks = [];
+    const readyTasks = [];
 
     data.forEach(task => {
-        const listItem = document.createElement('li');// Crea un nuevo pergamino para cada tarea (document.createElement('li'))
-        listItem.innerHTML = /*html*/ `
-            <span>${task.task}</span>
+        if (task.status === 'Ready') {
+            readyTasks.push(task);
+        } else {
+            onHoldTasks.push(task);
+        }
+    });
+
+    // Ordenar readyTasks al final de la lista
+    const sortedData = [...onHoldTasks, ...readyTasks];
+
+    sortedData.forEach(task => {
+        const listItem = document.createElement('li');
+        updateListItem(task, listItem);
+        taskList.appendChild(listItem);
+    });
+
+    function updateListItem(task, listItem) {
+        const spanStyle = task.status === 'Ready' ? 'text-decoration: line-through;' : '';
+        listItem.innerHTML = `
+            <div class="task-text">
+                <span style="${spanStyle}">${task.task}</span>
+            </div>
             <div class="task-actions">
-            <button class="complete-btn" data-task-id="${task.id}" data-task-status="${task.status}">${task.status}</button>
-            <button class="delete-btn" data-task-id="${task.id}">Delete</button>
+                <button class="complete-btn ${task.status === 'Ready' ? 'ready' : 'on-hold'}"
+                    data-task-id="${task.id}" data-task-status="${task.status}">
+                    ${task.status}
+                </button>
+                <button class="delete-btn" data-task-id="${task.id}">Delete</button>
             </div>
         `;
 
-        // Agrega evento de click al botón "Complete"
-        const completeButton = listItem.querySelector('.complete-btn');// Encuentra el botón de completar en el pergamino (listItem.querySelector('.complete-btn'))
+        const completeButton = listItem.querySelector('.complete-btn');
         completeButton.addEventListener('click', async () => {
-            const taskId = completeButton.dataset.taskId; // Obtiene el ID de la tarea del botón (completeButton.dataset.taskId)
-            let currentStatus = completeButton.dataset.taskStatus;// Obtiene el estado actual de la tarea (completeButton.dataset.taskStatus)
+            const taskId = completeButton.dataset.taskId;
+            const currentStatus = task.status === 'On hold' ? 'Ready' : 'On hold';
 
-            if (currentStatus === 'On hold') {
-                currentStatus = 'Ready';// Cambia el estado a "Ready" si está en "On hold" (currentStatus = 'Ready')
-            } else {
-                currentStatus = 'On hold';// Cambia el estado a "On hold" si está en "Ready" (currentStatus = 'On hold')
-            }
             try {
-                const updatedTask = await updateTaskStatus(taskId, currentStatus);// Invoca el hechizo para actualizar el estado en la API (await updateTaskStatus(taskId, currentStatus))
-                completeButton.dataset.taskStatus = currentStatus;// Actualiza el estado en el botón (completeButton.dataset.taskStatus)
-                completeButton.textContent = currentStatus;// Actualiza el texto del botón (completeButton.textContent)
+                const updatedTask = await updateTaskStatus(taskId, currentStatus);
+                // Actualizar el estado y reordenar la lista en tiempo real
+                if (currentStatus === 'Ready') {
+                    // Mover la tarea a la lista de readyTasks
+                    const index = sortedData.findIndex(t => t.id === taskId);
+                    sortedData.splice(index, 1); // Remover de la posición actual
+                    sortedData.push(updatedTask); // Agregar al final de readyTasks
+                } else {
+                    // Mover la tarea de readyTasks a onHoldTasks
+                    const index = sortedData.findIndex(t => t.id === taskId);
+                    sortedData.splice(index, 1); // Remover de la posición actual
+                    sortedData.unshift(updatedTask); // Agregar al inicio de onHoldTasks
+                }
+
+                taskList.innerHTML = ''; // Limpiar y volver a renderizar
+                listAlldata(sortedData);
+
             } catch (error) {
-                console.error(`Error al actualizar el estado de la tarea con ID ${taskId}: ${error.message}`);// Lanza una advertencia si hay un error (console.error)
+                console.error(`Error al actualizar el estado de la tarea con ID ${taskId}: ${error.message}`);
             }
         });
 
-        // Agrega evento de click al botón "Delete"
-        const deleteButton = listItem.querySelector('.delete-btn');// Encuentra el botón de eliminar en el pergamino (listItem.querySelector('.delete-btn'))
+        const deleteButton = listItem.querySelector('.delete-btn');
         deleteButton.addEventListener('click', () => {
-            const taskId = deleteButton.dataset.taskId;// Obtiene el ID de la tarea a eliminar (deleteButton.dataset.taskId)
-            deleteData(data, taskId);// Invoca el hechizo para eliminar la tarea del arreglo (deleteData(data, taskId))
-            taskList.innerHTML = '';// Limpia la lista de tareas en el DOM (taskList.innerHTML = '')
-            listAlldata(data);// Vuelve a renderizar la lista actualizada (listAlldata(data))
+            const taskId = deleteButton.dataset.taskId;
+            deleteData(sortedData, taskId);
+            taskList.innerHTML = '';
+            listAlldata(sortedData);
         });
-        taskList.appendChild(listItem);// Adjunta el pergamino con la tarea a la lista principal (taskList.appendChild(listItem))
-    });
-
+    }
 };
