@@ -6,8 +6,17 @@ import { addNewData } from "./algoritms/formules.js";
 export const taskList = document.querySelector('#task-list');
 export const taskSearchInput = document.querySelector('#task-search');
 const addTaskBtn = document.querySelector('#add-task-btn');
+const responsepage=document.querySelector('#response')
 
 document.addEventListener('DOMContentLoaded', async () => {
+    
+        // Simula un retraso de 1 segundo antes de continuar
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    
+        // Oculta el mensaje después del retraso
+        responsepage.style.display = 'none';
+
+
     let data = await getAllData();
     listAlldata(data);
 
@@ -37,3 +46,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
 });
+
+    

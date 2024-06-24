@@ -40,6 +40,32 @@ export const addNewData = async (newTask) => {
 };
 
 
+export const updateTaskStatus = async (taskId, newStatus) => {
+    const currentTask = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task/${taskId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`No se encontró la tarea con ID ${taskId}`);
+            }
+            return response.json();
+        });
+    const updatedTask = {
+        ...currentTask,
+        status: newStatus
+    };
+    const response = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task/${taskId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedTask)
+    });
+    if (!response.ok) {
+        throw new Error(`Error al actualizar el estado de la tarea con ID ${taskId}: ${response.status} - ${response.statusText}`);
+    }
+    return updatedTask;
+};
+
+
 export const deleteData = async (data, taskId) => { // Función asincrónica para eliminar un dato específico del JSON
     try {
         const response = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task/${taskId}`, { // Intenta eliminar el dato con el ID proporcionado

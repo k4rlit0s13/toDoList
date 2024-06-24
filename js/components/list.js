@@ -1,6 +1,7 @@
 // Importa la variable taskList desde main.js para acceder a la lista de tareas
 import { taskList } from "../main.js";
 import { deleteData } from "../algoritms/formules.js";
+import { updateTaskStatus } from "../algoritms/formules.js";
 
 export const listAlldata = (data) => {
     if (!Array.isArray(data)) {
@@ -14,10 +15,30 @@ export const listAlldata = (data) => {
         listItem.innerHTML = /*html*/ `
             <span>${task.task}</span>
             <div class="task-actions">
-                <button class="complete-btn">${task.status}</button>
-                <button class="delete-btn" data-task-id="${task.id}">Delete</button>
+            <button class="complete-btn" data-task-id="${task.id}" data-task-status="${task.status}">${task.status}</button>
+            <button class="delete-btn" data-task-id="${task.id}">Delete</button>
             </div>
         `;
+
+        // Agregar evento de click al botón "Complete"
+        const completeButton = listItem.querySelector('.complete-btn');
+        completeButton.addEventListener('click', async () => {
+            const taskId = completeButton.dataset.taskId; // Obtener el ID de la tarea
+            let currentStatus = completeButton.dataset.taskStatus; // Obtener el estado actual de la tarea
+
+            if (currentStatus === 'On hold') {
+                currentStatus = 'Ready'; // Cambiar el estado a "Ready" si está en "On hold"
+            } else {
+                currentStatus = 'On hold'; // Cambiar el estado a "On hold" si está en "Ready"
+            }
+            try {
+                const updatedTask = await updateTaskStatus(taskId, currentStatus); // Actualizar estado en la API
+                completeButton.dataset.taskStatus = currentStatus; // Actualizar el estado en el botón
+                completeButton.textContent = currentStatus; // Actualizar texto del botón
+            } catch (error) {
+                console.error(`Error al actualizar el estado de la tarea con ID ${taskId}: ${error.message}`);
+            }
+        });
 
         // Agregar evento de click al botón "Delete"
         const deleteButton = listItem.querySelector('.delete-btn');
@@ -30,4 +51,5 @@ export const listAlldata = (data) => {
 
         taskList.appendChild(listItem);
     });
+
 };
