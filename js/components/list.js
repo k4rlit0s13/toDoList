@@ -2,10 +2,15 @@
 import { taskList } from "../main.js";
 import { deleteData } from "../algoritms/formules.js";
 
-// Función para listar todos los datos
 export const listAlldata = (data) => {
+    if (!Array.isArray(data)) {
+        data = [data]; // Convertir a array si no lo es
+    }
+
+    taskList.innerHTML = ''; // Limpiar la lista antes de agregar elementos
+
     data.forEach(task => {
-        const listItem = document.createElement('li');  
+        const listItem = document.createElement('li');
         listItem.innerHTML = /*html*/ `
             <span>${task.task}</span>
             <div class="task-actions">
@@ -25,5 +30,4 @@ export const listAlldata = (data) => {
 
         taskList.appendChild(listItem);
     });
-
 };

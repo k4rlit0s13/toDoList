@@ -9,19 +9,36 @@ export const getAllData = async () => {
     return data;// formules entrega el contenido mágico del pergamino para que otros lo usen
 };
 
-export const getTaskByName = async (taskName) => {
-    const response = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task?task=${encodeURIComponent(taskName)}`);
+export const getFilteredData = async (task) => {
+    const response = await fetch('https://6677385c145714a1bd742329.mockapi.io/task');
     const data = await response.json();
-    return data;
+    return data.filter(item => item.task.toLowerCase().includes(task.toLowerCase()));
 };
 
-export const addNewData=async()=>{
 
-}
+export const addNewData = async (newTask) => {
+    const newData = {
+        task: newTask,
+        status: "On hold"
+    };
+    try {
+        const response = await fetch('https://6677385c145714a1bd742329.mockapi.io/task', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newData)
+        });
+        if (!response.ok) {
+            throw new Error(`Error al agregar nueva tarea: ${response.status} - ${response.statusText}`);
+        }
+        const updatedData = await response.json();
+        listAlldata(updatedData); // Renderiza la lista actualizada
+    } catch (error) {
+        console.error(error);
+    }
+};
 
-export const editDataName=async()=>{
-
-}
 
 export const deleteData = async (data, taskId) => { // Función asincrónica para eliminar un dato específico del JSON
     try {
