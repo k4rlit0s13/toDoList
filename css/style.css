@@ -4,145 +4,143 @@
 
 body{
     /* background-color: chocolate; */
-    display: flex;
-    justify-content: center;
+    display: flex; /* Aquí el mago style lanza su encantamiento sobre el cuerpo del pergamino, el documento HTML*/
+    justify-content: center;/**/
 
-    background-image: url('../storage/img/greeimm-bae-.jpg');
-    background-size: auto 100vh;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background-image: url('../storage/img/greeimm-bae-.jpg');/**/
+    background-size: auto 100vh;/*Con un gesto mágico, el mago style establece un contenedor flexible para alinear sus elementos*/
+    background-position: center top;/*el mago style mueve su varita para alinear los elementos en el centro horizontalmente dentro del contenedor flexible*/
+    background-repeat: no-repeat;/*el mago style invoca una imagen mágica desde el pergamino URL y la fija como fondo del cuerpo*/
+    background-attachment: fixed;/*La imagen mágica se fija en su lugar, inmóvil, incluso cuando el pergamino se desplaza, como una ilustración encantada*/
+    background-size: cover;/*La imagen mágica se estira para cubrir todo el cuerpo, sin dejar espacios vacíos, adaptándose perfectamente a su contenedor*/
 }
 
-main{
+main{/* Style invoca su hechizo sobre el elemento principal del pergamino */
     
     /* background-color: red; */
 
+    background-image: url('../storage/img/pergamino_solo_copy.png');/* Style convoca una imagen mágica desde la URL y la fija como fondo del elemento principal */
+    background-size: 100% 102%; /* La imagen mágica se ajusta para cubrir el 100% del ancho y el 102% del alto del elemento, expandiéndose ligeramente más alto */
+    background-position: center;/* Style posiciona la imagen mágica en el centro del elemento, asegurando que esté perfectamente equilibrada */
+    background-repeat: no-repeat;/* Con un hechizo, Style asegura que la imagen mágica no se repita, quedando única en su lugar */
 
-    background-image: url('../storage/img/pergamino_solo_copy.png');
-    background-size: 100% 102%; /* Ajusta la imagen para que cubra todo el contenedor */
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex;/* Style usa magia para establecer un contenedor flexible que permitirá alinear sus elementos hijos */
+    flex-direction: column;/* Los elementos dentro del contenedor flexible se apilarán mágicamente en una columna, uno encima del otro */
+    align-items: center;/* Style centra todos los elementos dentro del contenedor flexible en su eje transversal (horizontalmente) */
     
-    width: 80vw;
-    height: 90vh;
-    padding: 20px;
-    margin: 10px;
+    width: 80vw;/* El ancho del elemento principal se establece en el 80% del ancho de la ventana mágica, ocupando la mayor parte del espacio disponible */
+    height: 90vh;/* La altura del elemento principal se establece en el 90% de la altura de la ventana mágica, casi llenándola por completo */
+    padding: 20px;/* Style añade un relleno mágico de 20 píxeles dentro del elemento, creando espacio alrededor del contenido interno */
+    margin: 10px;/* Style agrega un margen mágico de 10 píxeles alrededor del elemento, separándolo de otros elementos */
     
-    gap: 5px;
+    gap: 5px;/* Style deja un espacio mágico de 5 píxeles entre los elementos hijos del contenedor flexible, para que no estén apretados */
 
 }
 
 header h1{
-    font-size: 1.5rem;
+    font-size: 1.5rem;/*style aplica un tamaño de fuente de 1.5 adaptable*/
 }
 
-ul{
+ul{/* Estilo básico del contenedor ul */
     /* background-color: cadetblue; */
     
-    display: flex;
-    flex-direction: column;
+    display: flex;/* Define un contenedor flexible */
+    flex-direction: column;/* Organiza los elementos en una columna */
 
-    gap: 10px;
+    gap: 10px;/* Espacio entre los elementos */
 
-    width: 70vw;
-    height: 100vh;
-    padding: 0;
+    width: 70vw;/* Ancho del 70% del viewport */
+    height: 100vh;/* Altura del 100% del viewport */
+    padding: 0;/* Sin relleno interno */
 
-    overflow-y: scroll;
-    scrollbar-width: none; 
+    overflow-y: scroll;/* Scroll vertical si es necesario */
+    scrollbar-width: none;/* Oculta la barra de desplazamiento */
 }
 
 li{
-    background-color: #805a0234;
-    border-radius: 15px;
+    background-color: #805a0234;/* Color de fondo con opacidad */
+    border-radius: 15px;/* Bordes redondeados */
 
-    gap: 10px;
+    gap: 10px;/* Espacio entre los elementos */
 
-    display: flex;
-    align-items: center;
+    display: flex;/* Contenedor flexible */
+    align-items: center;/* Alineación vertical al centro */
 }
 
 .task-text {
     /* background-color: bisque; */
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-wrap: anywhere; /* Reemplaza word-wrap y overflow-wrap */
-    height: auto; /* Permite que el contenedor crezca con el contenido */
+    display: flex;/* Contenedor flexible */
+    flex-direction: column;/* Organización en columna */
+    width: 50%;/* Ancho del 50% del contenedor padre */
+    padding: 10px;/* Relleno interno */
+    border-radius: 5px;/* Bordes redondeados */
+    overflow-wrap: anywhere; /* Permite el ajuste de palabras */
+    height: auto;/* Permite que el contenedor crezca con el contenido */
 }
 
 #task-search{
-    border: none; /* Elimina el borde */
-    outline: none; /* Elimina el contorno */
-    background: none; /* Elimina el fondo */
-    padding: 0; /* Elimina el relleno */
-    margin: 0; /* Elimina el margen */
+    border: none; /* Hechizo para eliminar el borde */
+    outline: none;/* Hechizo para eliminar el contorno */
+    background: none;/* Hechizo para eliminar el fondo */
+    padding: 0; /* Hechizo para eliminar el relleno */
+    margin: 0; /* Hechizo para eliminar el margen */
 
-    background-color: #805a0234;
-    border-radius: 20px 0px 0px 20px;
-    padding: 10px;
+    background-color: #805a0234;/* Conjura un fondo transparente como un pergamino */
+    border-radius: 20px 0px 0px 20px;/* Bordes mágicamente redondeados en las esquinas izquierda */
+    padding: 10px;/* Añade un relleno encantado para comodidad */
 }
 #task-search::placeholder {
-    color: #000;
+    color: #000;/* El color del texto mágico del marcador de posición */
 }
 
 #add-task-btn{
-    appearance: none;
-    border: none;
-    background: none;
-    cursor: pointer;
+    appearance: none;/* Encantamiento para eliminar la apariencia predeterminada */
+    border: none;/* Hechizo para eliminar el borde */
+    background: none;/* Hechizo para eliminar el fondo */
+    cursor: pointer;/* Varita mágica para cambiar el cursor a un puntero */
 
-    background-color: #2db0ca4d;
-    border-radius: 0px 20px 20px 0px;
-    padding: 10px;
+    background-color: #2db0ca4d;/* Conjura un fondo mágico y semi-transparente */
+    border-radius: 0px 20px 20px 0px;/* Bordes mágicamente redondeados en las esquinas derecha */
+    padding: 10px;/* Añade un relleno encantado para comodidad */
 }
 
 .task-actions{
     /* background-color: chartreuse; */
     
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: flex;/* Encantamiento para alinear elementos en una fila */
+    flex-direction: row;/* Dirección del hechizo de flexión */
+    justify-content: center;/* Encantamiento para centrar los elementos */
 
-    gap: 10px;
+    gap: 10px;/* Espaciado encantado entre los elementos */
 
-    width: 60%;
+    width: 60%;/* Ancho encantado del contenedor */
 }
 
 .complete-btn{
-    appearance: none;
-    border: none;
-    background: none;
-    cursor: pointer;
+    appearance: none;/* Hechizo para eliminar la apariencia predeterminada */
+    border: none;/* Hechizo para eliminar el borde */
+    background: none;/* Hechizo para eliminar el fondo */
+    cursor: pointer;/* Varita mágica para cambiar el cursor a un puntero */
 
-    /* background-color: #80780234; */
-    border-radius: 5px;
+    border-radius: 5px;/* Bordes suavizados por encantamiento */
 }
 
 .complete-btn.ready {
-    background-color: rgba(0, 128, 0, 0.405); /* Cambia el color para estado 'Ready' */
+    background-color: rgba(0, 128, 0, 0.405);/* Conjura un fondo verde semitransparente para el estado 'Ready' */
 }
 
 .complete-btn.on-hold {
-    background-color: rgba(255, 166, 0, 0.387); /* Cambia el color para estado 'On hold' */
+    background-color: rgba(255, 166, 0, 0.387);/* Conjura un fondo ámbar semitransparente para el estado 'On hold' */
 }
 
 button.delete-btn {
-    appearance: none;
-    border: none;
-    background: none;
-    cursor: pointer;
+    appearance: none;/* Hechizo para eliminar la apariencia predeterminada */
+    border: none;/* Hechizo para eliminar el borde */
+    background: none;/* Hechizo para eliminar el fondo */
+    cursor: pointer;/* Varita mágica para cambiar el cursor a un puntero */
 
-    background-color: #80020234;
-    border-radius: 5px;
+    background-color: #80020234;/* Conjura un fondo rojo semitransparente para el botón de eliminación */
+    border-radius: 5px;/* Bordes suavizados por encantamiento */
 }
 
 

@@ -84,16 +84,16 @@ export const deleteData = async (data, taskId) => {// Crea una función asincró
     }
 };
 
-// Función para obtener la fecha y hora actuales
+// Hechizo para obtener la fecha y hora actuales
 export const updateDateTime = () => {
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString();
-    const formattedTime = now.toLocaleTimeString();
-    document.getElementById('current-date-time').textContent = `${formattedDate} ${formattedTime}`;
+    const now = new Date();// Formules invoca el poder del tiempo para capturar el momento actual
+    const formattedDate = now.toLocaleDateString();//Transforma el momento capturado en una cadena mágica que representa la fecha en un formato legible
+    const formattedTime = now.toLocaleTimeString();//Transforma el momento capturado en una cadena mágica que representa la hora en un formato legible
+    document.getElementById('current-date-time').textContent = `${formattedDate} ${formattedTime}`;//Escribe el encantamiento de fecha y hora en el pergamino mágico del elemento con el id 'current-date-time'
 };
-document.addEventListener('DOMContentLoaded', (event) => {
-    updateDateTime(); 
-    setInterval(updateDateTime, 1000); 
+document.addEventListener('DOMContentLoaded', (event) => {//Formules lanza un hechizo que se ejecutará cuando el pergamino del documento esté completamente cargado
+    updateDateTime();// Invoca el hechizo para actualizar la fecha y hora inmediatamente después de cargar el pergamino
+    setInterval(updateDateTime, 1000);// Configura un encantamiento para invocar el hechizo de actualización de fecha y hora cada 1000 milisegundos (1 segundo)
 });
 
 
