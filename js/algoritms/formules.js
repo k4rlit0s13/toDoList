@@ -5,13 +5,13 @@ import { currentdatetime } from "../main.js";
 
 // Encantamiento para obtener todos los datos de las tareas desde la API
 export const getAllData = async () => {// Crea un hechizo asincrónico llamado 'getAllData' para obtener todos los datos de las tareas
-    const response = await fetch('https://6677385c145714a1bd742329.mockapi.io/task');// Lanza un hechizo para buscar el pergamino mágico (JSON) llamado 'data.json'
+    const response = await fetch('https://6674179975872d0e0a950e53.mockapi.io/todoList');// Lanza un hechizo para buscar el pergamino mágico (JSON) llamado 'data.json'
     const data = await response.json();// Espera la respuesta del hechizo; si todo va bien, obtiene el pergamino
     return data;// Entrega el contenido mágico del pergamino para que otros lo usen
 };
 // Hechizo para filtrar los datos de las tareas basado en una tarea específica
 export const getFilteredData = async (task) => {// Crea un hechizo asincrónico llamado 'getFilteredData' que recibe una tarea como parámetro
-    const response = await fetch('https://6677385c145714a1bd742329.mockapi.io/task');// Lanza un hechizo para buscar el pergamino mágico (JSON)
+    const response = await fetch('https://6674179975872d0e0a950e53.mockapi.io/todoList');// Lanza un hechizo para buscar el pergamino mágico (JSON)
     const data = await response.json();// Espera la respuesta del hechizo y obtiene todos los datos de las tareas
     return data.filter(item => item.task.toLowerCase().includes(task.toLowerCase()));// Utiliza un hechizo de filtro para encontrar datos que contengan la tarea específica (toLowerCase())
 };
@@ -22,7 +22,7 @@ export const addNewData = async (newTask) => {// Crea un hechizo asincrónico ll
         status: "On hold"// Establece el estado de la tarea como "On hold"
     };
     try {
-        const response = await fetch('https://6677385c145714a1bd742329.mockapi.io/task', {// Lanza un hechizo para agregar una nueva tarea a la API
+        const response = await fetch('https://6674179975872d0e0a950e53.mockapi.io/todoList', {// Lanza un hechizo para agregar una nueva tarea a la API
             method: 'POST',// Utiliza el método mágico 'POST' para añadir la nueva tarea
             headers: {
                 'Content-Type': 'application/json'// Establece el tipo de contenido del hechizo como JSON
@@ -41,7 +41,7 @@ export const addNewData = async (newTask) => {// Crea un hechizo asincrónico ll
 
 // Hechizo para actualizar el estado de una tarea específica usando el método PUT a la API
 export const updateTaskStatus = async (taskId, newStatus) => {// Crea un hechizo asincrónico llamado 'updateTaskStatus' que recibe un ID de tarea y un nuevo estado como parámetros
-    const currentTask = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task/${taskId}`)// Lanza un hechizo para obtener la tarea actual con el ID proporcionado
+    const currentTask = await fetch(`https://6674179975872d0e0a950e53.mockapi.io/todoList/${taskId}`)// Lanza un hechizo para obtener la tarea actual con el ID proporcionado
         .then(response => {// Utiliza una promesa mágica para manejar la respuesta del hechizo
             if (!response.ok) {// Verifica si la respuesta del hechizo no es exitosa
                 throw new Error(`No se encontró la tarea con ID ${taskId}`);// Lanza un hechizo de error si la tarea no se encuentra
@@ -52,7 +52,7 @@ export const updateTaskStatus = async (taskId, newStatus) => {// Crea un hechizo
         ...currentTask,// Utiliza el hechizo de expansión para copiar todos los atributos de la tarea actual
         status: newStatus// Actualiza el estado de la tarea con el nuevo estado proporcionado
     };
-    const response = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task/${taskId}`, {// Lanza un hechizo para actualizar la tarea con el ID proporcionado
+    const response = await fetch(`https://6674179975872d0e0a950e53.mockapi.io/todoList/${taskId}`, {// Lanza un hechizo para actualizar la tarea con el ID proporcionado
         method: 'PUT',// Utiliza el método mágico 'PUT' para actualizar la tarea
         headers: {
             'Content-Type': 'application/json'// Establece el tipo de contenido del hechizo como JSON
@@ -68,7 +68,7 @@ export const updateTaskStatus = async (taskId, newStatus) => {// Crea un hechizo
 // Función asincrónica para eliminar un dato específico del JSON usando el método DELETE a la API
 export const deleteData = async (data, taskId) => {// Crea una función asincrónica llamada 'deleteData' que recibe datos y un ID de tarea como parámetros
     try {
-        const response = await fetch(`https://6677385c145714a1bd742329.mockapi.io/task/${taskId}`, {// Lanza un hechizo para eliminar la tarea con el ID proporcionado
+        const response = await fetch(`https://6674179975872d0e0a950e53.mockapi.io/todoList/${taskId}`, {// Lanza un hechizo para eliminar la tarea con el ID proporcionado
             method: 'DELETE',// Utiliza el método mágico 'DELETE' para eliminar la tarea
             headers: {'Content-Type':'application/json'}// Establece el tipo de contenido del hechizo como JSON
         });
